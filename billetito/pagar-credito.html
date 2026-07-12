@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagar Crédito</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex flex-col">
+
+    <!-- HEADER -->
+    <header class="w-full bg-[#00DF00] shadow-lg p-3 flex justify-between items-center rounded-b-3xl">
+        <!-- IZQUIERDA: Icono que redirige -->
+        <div class="flex items-center">
+            <a href="dashboard.html" class="text-white hover:text-green-200 transition duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
+                    <path fill-rule="evenodd"
+                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+
+        <!-- DERECHA: Logo estático -->
+        <div class="flex items-center">
+            <img src="img/LogoBilletito blanco.png" alt="Logo Billetito" class="max-w-[105px] h-30 object-contain" />
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="flex-grow flex items-start justify-center p-4 pb-20">
+        <div
+            class="flex flex-col items-center w-full max-w-md bg-white p-6 rounded-3xl shadow-2xl border border-green-100">
+
+            <!-- Aviso -->
+            <div class="bg-yellow-100 text-yellow-800 p-3 rounded-xl flex items-center gap-2 mb-4 text-sm">
+                🔔 Próximo vencimiento: <strong>18/08/2025</strong>
+            </div>
+
+            <!-- Selección de cuota -->
+            <h2 class="text-lg font-semibold text-gray-800 mb-3">Selecciona la cuota a pagar</h2>
+
+            <div id="cuota1" onclick="seleccionarCuota(1)"
+                class="cuota border-2 rounded-xl p-4 mb-3 cursor-pointer flex justify-between items-center border-[#00DF00] bg-green-50 w-full">
+                <div>
+                    <p class="font-bold text-[#00DF00]">Cuota 1</p>
+                    <p class="text-sm text-gray-500">Vence 18/08/2025</p>
+                </div>
+                <p class="text-lg font-bold text-gray-800">S/ 300.00</p>
+            </div>
+
+            <div id="cuota2" onclick="seleccionarCuota(2)"
+                class="cuota border rounded-xl p-4 mb-4 cursor-pointer flex justify-between items-center bg-white w-full">
+                <div>
+                    <p class="font-bold text-gray-800">Cuota 2</p>
+                    <p class="text-sm text-gray-500">Vence 18/09/2025</p>
+                </div>
+                <p class="text-lg font-bold text-gray-800">S/ 300.00</p>
+            </div>
+
+            <!-- Información extra -->
+            <div class="bg-green-50 border border-green-200 p-4 rounded-xl mb-5 flex items-start gap-3 w-full">
+                <div class="text-2xl">💸</div>
+                <div>
+                    <p class="text-[#00DF00] font-semibold mb-1">¿Deseas pagar un monto mayor?</p>
+                    <p class="text-sm text-gray-700">Aquí puedes adelantar y anticipar cuotas o cancelar tu crédito.</p>
+                </div>
+            </div>
+
+            <!-- Cuenta de pago -->
+            <h3 class="text-base font-semibold text-gray-800 mb-2">Pagarás con la cuenta</h3>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-4 flex justify-between items-center mb-6 w-full">
+                <div>
+                    <p class="font-medium text-gray-800">Cuenta Billetito</p>
+                    <p class="text-sm text-gray-500">********0001</p>
+                </div>
+                <p class="font-bold text-gray-800">S/ 820.75</p>
+            </div>
+
+            <!-- Progreso -->
+            <div class="w-full bg-gray-200 rounded-full h-2 mb-5">
+                <div id="barraProgreso" class="bg-[#00DF00] h-2 rounded-full" style="width: 0%"></div>
+            </div>
+
+            <!-- Resumen -->
+            <div id="resumenPago" class="bg-green-50 border border-green-200 p-4 rounded-xl mb-5 w-full hidden">
+                <p class="text-[#00DF00] font-semibold mb-1">Resumen de tu pago</p>
+                <p class="text-sm text-gray-700">Cuota seleccionada: <span id="cuotaSeleccionada"></span></p>
+                <p class="text-sm text-gray-700">Monto a pagar: <span id="montoSeleccionado"></span></p>
+            </div>
+
+            <!-- Botón siguiente -->
+            <button onclick="continuarPago()"
+                class="w-full bg-[#00DF00] text-white font-semibold py-3 rounded-xl shadow-md hover:bg-green-700 transition disabled:opacity-50"
+                disabled id="btnSiguiente">
+                Continuar
+            </button>
+        </div>
+    </main>
+
+    <!-- Navegación inferior -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white p-4 pb-6 sm:px-6 sm:py-4 flex justify-center gap-3 sm:gap-4">
+        <button onclick="goToScan()"
+            class="bg-white text-[#00DF00] font-semibold px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg border border-[#00DF00] flex items-center gap-2 sm:gap-3 flex-1 sm:flex-none sm:min-w-[140px] max-w-[160px] justify-center hover:shadow-xl transition-shadow text-sm sm:text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
+            </svg>
+            <span class="whitespace-nowrap">Escanear</span>
+        </button>
+
+        <button onclick="goToSend()"
+            class="bg-[#00DF00] text-white font-semibold px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-2 sm:gap-3 flex-1 sm:flex-none sm:min-w-[140px] max-w-[180px] justify-center hover:bg-green-600 transition-colors text-sm sm:text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+            </svg>
+            <span class="whitespace-nowrap">Enviar billetito</span>
+        </button>
+    </nav>
+
+    <script>
+        let cuotaActiva = null;
+
+        function seleccionarCuota(num) {
+            document.querySelectorAll('.cuota').forEach(c => c.classList.remove('border-2', 'bg-green-50', 'border-[#00DF00]'));
+            const cuotaSel = document.getElementById(`cuota${num}`);
+            cuotaSel.classList.add('border-2', 'bg-green-50', 'border-[#00DF00]');
+            cuotaActiva = num;
+
+            // Actualizar barra de progreso
+            document.getElementById("barraProgreso").style.width = "50%";
+
+            // Mostrar resumen
+            const monto = cuotaSel.querySelector('p.text-lg').textContent;
+            document.getElementById("resumenPago").classList.remove("hidden");
+            document.getElementById("cuotaSeleccionada").textContent = `Cuota ${num}`;
+            document.getElementById("montoSeleccionado").textContent = monto;
+
+            // Habilitar botón
+            document.getElementById("btnSiguiente").disabled = false;
+        }
+
+        function continuarPago() {
+            if (!cuotaActiva) return;
+
+            // Simular "procesando"
+            Swal.fire({
+                title: 'Procesando pago...',
+                allowOutsideClick: false,
+                didOpen: () => Swal.showLoading(),
+                timer: 1200
+            }).then(() => {
+                mostrarRecibo();
+            });
+        }
+
+        function mostrarRecibo() {
+            const monto = document.getElementById("montoSeleccionado").textContent;
+            const fecha = new Date().toLocaleString("es-PE", { dateStyle: "short", timeStyle: "short" });
+            const cuenta = "********0001";
+
+            // Ocultamos el contenido principal
+            document.querySelector("main").innerHTML = `
+        <div class="flex flex-col items-center w-full max-w-md bg-white p-6 rounded-3xl shadow-2xl border border-green-100 text-center">
+                <h2 class="text-xl font-bold text-gray-500 mb-4">Pago Exitoso!</h2>
+            <div id="recibo" class="flex flex-col items-center justify-center p-2">
+            <!-- Logo -->
+                <img src="img/LogoBilletito.png" alt="Logo Billetito" class="mx-auto h-20 sm:h-24 object-contain mb-4" />
+                
+                <div class="w-full border-t border-b py-4 mb-4">
+                    <p class="text-gray-600">Recibo N° <strong>${Math.floor(Math.random() * 1000000)}</strong></p>
+                    <p class="text-sm text-gray-500">${fecha}</p>
+                </div>
+
+                <div class="w-full mb-4 text-left">
+                    <p class="font-semibold text-gray-800">Detalle del pago</p>
+                    <p class="text-sm text-gray-700">Cuota pagada: <strong>Cuota ${cuotaActiva}</strong></p>
+                    <p class="text-sm text-gray-700">Monto: <strong>${monto}</strong></p>
+                    <p class="text-sm text-gray-700">Cuenta de cargo: <strong>${cuenta}</strong></p>
+                </div>
+
+                <div class="bg-green-50 border border-green-200 rounded-xl p-4 w-full mb-5">
+                    <p class="text-sm text-gray-600">Gracias por mantener tus pagos al día en <span class="font-semibold text-[#00DF00]">Billetito</span>. ¡Sigue construyendo tu historial crediticio!</p>
+                </div>
+            </div>
+
+            <button onclick="window.location.href='dashboard.html'" 
+                class="w-full bg-[#00DF00] text-white font-semibold py-3 rounded-xl shadow-md hover:bg-green-700 transition">
+                Volver al inicio
+            </button>
+
+            <!-- Botón para descargar -->
+            <button onclick="descargarRecibo()" 
+                    class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700">
+                Descargar PDF
+            </button>
+        </div>
+        `;
+        }
+    </script>
+    <!-- Incluye html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        function descargarRecibo() {
+            const element = document.getElementById("recibo");
+            const opt = {
+                margin: 0,
+                filename: 'recibo.pdf',
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: [120, 150], orientation: 'portrait' } // formato chico tipo recibo
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+
+</body>
+
+</html>

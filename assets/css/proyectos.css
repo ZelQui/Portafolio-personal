@@ -1,0 +1,239 @@
+/* ================================
+   GRID DE PROYECTOS
+================================ */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+    padding: 3rem 0;
+}
+/* Pantallas pequeñas */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: none;
+    }
+}
+
+/* ================================
+   TARJETA DE PROYECTO (Estilo Premium)
+================================ */
+.project-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ELIMINADA LA LÍNEA SUPERIOR (::before) */
+
+.project-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   CONTENIDO INTERNO
+================================ */
+.project-card .content {
+    padding: 40px 30px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* LOGO CON EFECTO DE PROFUNDIDAD */
+.project-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 30%; /* Forma squircle moderna */
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.5s ease;
+    box-shadow: 0 15px 35px var(--card-glow, rgba(0,0,0,0.1));
+}
+
+.project-card:hover .project-logo {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.project-logo img {
+    max-width: 60%;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+/* ================================
+   TEXTO DEL TÍTULO MEJORADO
+================================ */
+.project-name {
+    /* Fuente moderna y tecnológica */
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    font-size: 1.5rem;
+    font-weight: 800; /* Extra negrita para impacto */
+    margin-bottom: 12px;
+    color: #0f172a; /* Azul muy oscuro casi negro */
+    
+    /* Ajustes de espaciado para un look premium */
+    letter-spacing: -0.03em; 
+    line-height: 1.2;
+    
+    /* Suave degradado sutil opcional (puedes quitarlo si prefieres color sólido) */
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse por la card */
+.project-card:hover .project-name {
+    transform: scale(1.02);
+}
+
+/* Ajuste opcional para la descripción para que combine */
+.project-description {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* TECNOLOGÍAS (Pills modernas) */
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.tech-tag {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 12px;
+    background: #f1f5f9;
+    color: #475569;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.project-card:hover .tech-tag {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    color: #1e293b;
+    transform: scale(1.05);
+}
+
+/* ================================
+   TARJETA PRÓXIMAMENTE (Efecto Glass)
+================================ */
+.add-project {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 2px dashed #cbd5e1;
+    min-height: 380px;
+    justify-content: center;
+}
+
+.add-project .plus-icon {
+    font-size: 4rem;
+    color: #94a3b8;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.add-project:hover .plus-icon {
+    transform: rotate(90deg) scale(1.2);
+    color: #64748b;
+}
+
+.add-text {
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ================================
+   TARJETA PRÓXIMAMENTE (ID ÚNICO)
+================================ */
+#card-upcoming {
+    background: #ffffff;
+    border: 2px dashed #e2e8f0;
+    box-shadow: none;
+    cursor: default;
+    transition: all 0.4s ease;
+}
+
+/* Contenedor del icono + */
+#card-upcoming .upcoming-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid #f1f5f9;
+    transition: all 0.5s ease;
+}
+
+#card-upcoming .plus-icon {
+    font-size: 2.5rem;
+    color: #94a3b8;
+    font-weight: 300;
+    line-height: 1;
+}
+
+/* Texto de descripción específico para esta card */
+#card-upcoming .project-description {
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Badge de estado */
+#card-upcoming .status-badge {
+    margin-top: 15px;
+    padding: 5px 15px;
+    background: #f1f5f9;
+    color: #64748b;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* HOVER EFFECT EXCLUSIVO */
+#card-upcoming:hover {
+    border-color: #3b82f6; /* Azul vibrante al pasar el mouse */
+    background: rgba(59, 130, 246, 0.02);
+    transform: translateY(-5px);
+}
+
+#card-upcoming:hover .upcoming-icon-wrapper {
+    transform: rotate(90deg);
+    background: #eff6ff;
+    border-color: #dbeafe;
+}
+
+#card-upcoming:hover .plus-icon {
+    color: #3b82f6;
+}
+
+#card-upcoming:hover .status-badge {
+    background: #3b82f6;
+    color: #ffffff;
+}

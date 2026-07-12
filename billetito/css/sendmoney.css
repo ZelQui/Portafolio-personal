@@ -1,0 +1,178 @@
+
+.swal2-loader {
+  border-color: #00DF00 transparent #00DF00 transparent !important;
+}
+
+
+/* Asegura que html y body ocupen todo el alto y no tengan margen */
+html, body {
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Opcional: fuerza el body a usar flex para centrar el main si quieres */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilo para que el "S/" se muestre como parte del input */
+.input-monto-container {
+    position: relative;
+}
+
+.prefijo-s {
+    left: 10px;
+    top: 50%;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00DF00;
+}
+
+.input-monto-container .prefijo-s {
+    position: absolute;
+    left: 10px;
+    /* Ajusta según el padding del input */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    /* Asegura que sea grande como el monto */
+    font-weight: bold;
+    color: #00DF00;
+    /* green-600 */
+    pointer-events: none;
+    /* Permite clics a través del span */
+}
+
+/* Oculta las flechas de incremento/decremento en inputs type="number" */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+/* Estilos para SweetAlert2 personalizados (opcional, para mayor control visual) */
+.swal2-popup {
+    border-radius: 16px !important;
+    /* Bordes redondeados del popup */
+}
+
+.swal2-title {
+    color: #374151 !important;
+    /* Color del texto del título (gray-700) */
+    font-size: 1.5rem !important;
+    /* text-xl */
+    font-weight: 600 !important;
+    /* font-semibold */
+    margin-bottom: 1rem !important;
+    /* Espacio debajo del título */
+}
+
+.swal2-html-container {
+    margin: 0 !important;
+    padding: 1rem !important;
+    /* Ajustar padding si es necesario para el contenido */
+}
+
+/* Estilos para los botones de opción dentro de la modal */
+.swal2-html-container .opcion {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem;
+    /* p-3 */
+    border-radius: 0.5rem;
+    /* rounded-lg */
+    border: 1px solid #e5e7eb;
+    /* border-gray-200 */
+    background-color: #ffffff;
+    /* bg-white */
+    text-align: left;
+    color: #374151;
+    /* text-gray-700 */
+    transition: all 0.2s ease-in-out;
+}
+
+.swal2-html-container .opcion:hover {
+    border-color: #a7f3d0;
+    /* hover:border-green-300 */
+}
+
+.swal2-html-container .opcion:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(96, 185, 126, 0.5);
+    /* focus:ring-2 focus:ring-green-200 */
+}
+
+/* Estilo para el icono dentro del botón de opción */
+.swal2-html-container .opcion .icono {
+    width: 1.5rem;
+    /* w-6 */
+    height: 1.5rem;
+    /* h-6 */
+    margin-right: 0.5rem;
+    /* mr-2 */
+    color: #10bb10;
+    /* text-green-500 */
+}
+
+/* Estilo para el texto del botón de opción */
+.swal2-html-container .opcion span {
+    font-weight: 500;
+    /* medium */
+}
+
+/* Estilo del botón "Listo" de la modal */
+#btnListoModal {
+    margin-top: 1rem;
+    width: 100%;
+    background-color: #00DF00; /* green-600 */
+    transition: background-color 0.2s;
+    color: #fff;
+    font-weight: 600;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 1.125rem;
+    border: none;
+    cursor: pointer;
+}
+
+#btnListoModal:hover:not(:disabled) {
+    background-color: #15803d; /* green-700 */
+}
+
+#btnListoModal:disabled {
+    background-color: #4ade80; /* green-400 */
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Asegura que los botones de SweetAlert2 estén debajo y bien espaciados */
+.swal2-actions {
+    z-index: 1;
+    /* Asegura que los botones estén interactivos */
+    margin-top: 1.5rem !important;
+    /* Espacio superior para los botones de acción */
+}
+
+.swal2-confirm,
+.swal2-cancel {
+    border-radius: 0.75rem; /* rounded-xl */
+    font-weight: 600; /* font-semibold */
+    font-size: 1.125rem; /* text-lg */
+    padding-top: 0.75rem; /* py-3 */
+    padding-bottom: 0.75rem;
+    width: 100%; /* w-full */
+    /* Estilos base para los botones de acción de SweetAlert2 */
+}

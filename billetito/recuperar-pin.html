@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recuperar PIN - Billetito</title>
+  <link rel="icon" href="img/billetito.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-4">
+
+  <div class="w-full max-w-md bg-white p-8 rounded-3xl shadow-2xl border border-green-100">
+    <h2 class="text-3xl font-extrabold text-center text-[#00DF00] mb-6">Recuperar Clave PIN</h2>
+    <p class="text-gray-600 text-center mb-6">Verificaremos tus datos para continuar con la recuperación.</p>
+
+    <input id="dni" type="text" maxlength="8" placeholder="DNI (8 dígitos)"
+      class="w-full px-5 py-3 mb-4 border border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 text-lg"
+      oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+    />
+
+    <input id="email" type="email" placeholder="Correo electrónico registrado"
+      class="w-full px-5 py-3 mb-4 border border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 text-lg"
+    />
+
+    <button onclick="validarDatos()"
+      class="w-full bg-[#00DF00] text-white py-3 rounded-xl font-bold text-xl hover:bg-green-700 transition duration-200 shadow-lg mb-4">
+      Validar datos
+    </button>
+
+    <button onclick="volverLogin()"
+      class="w-full bg-gray-200 text-gray-800 py-3 rounded-xl font-bold text-xl hover:bg-gray-300 transition duration-200 shadow-lg">
+      Volver al inicio
+    </button>
+  </div>
+
+  <script>
+        async function sha256Hex(value) {
+            const data = new TextEncoder().encode(value);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+    </script>
+    <script>
+    async function validarDatos() {
+      const dni = document.getElementById("dni").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+
+      if ((await sha256Hex(dni)) === "e5f6cd1cb99fa6adec2bcb151886eda4420a6800a317bbaa3152d98e0b009418" && (await sha256Hex(email)) === "49cdfc07e42f9470a3b8068cd74827131ed85991bae9127e1774af1a4ab1e042") {
+        Swal.fire({
+          icon: 'success',
+          title: 'Validación exitosa',
+          text: 'Se ha enviado la información a su correo para cambiar su contraseña.',
+          confirmButtonColor: '#16a34a'
+        }).then(() => {
+          // Puedes redirigir si deseas
+          // window.location.href = "login-pin.html";
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Datos incorrectos',
+          text: 'El DNI o el correo ingresado no coinciden con ningún registro.',
+          confirmButtonColor: '#dc2626'
+        });
+      }
+    }
+
+    function volverLogin() {
+      window.location.href = "login-pin.html";
+    }
+  </script>
+</body>
+</html>

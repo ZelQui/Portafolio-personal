@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billetito - Microcréditos</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="../assets/vendors/themify-icons/css/themify-icons.css" />
+    <!-- Bootstrap + JohnDoe main styles -->
+    <link rel="stylesheet" href="billetito.css" />
+    <link rel="stylesheet" href="../assets/css/johndoe.css" />
+  </head>
+
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
+      <div class="container">
+        <button
+          class="navbar-toggler ml-auto"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a href="../index.html#proyectos" class="nav-link">
+                <i class="ti-back-left"></i> Mis proyectos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="product-header">
+        <div class="logo-area">
+            <div class="app-logo-wrapper" style="background: rgb(0,223,0);">
+                <img src="../assets/imgs/LogoBilletito.png" class="app-logo" />
+            </div>
+            <h1>Billetito</h1>
+        </div>
+      <p class="subtitle">Plataforma digital para gestión de microcréditos rápidos, simples y seguros.</p>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="product-container">
+      <!-- CARRUSEL -->
+      <div class="carousel">
+        <div class="slides">
+          <img src="../assets/imgs/billetito1.png" class="slide" />
+          <img src="../assets/imgs/billetito2.png" class="slide" />
+          <img src="../assets/imgs/billetito3.png" class="slide" />
+        </div>
+
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+      </div>
+
+      <!-- INFORMACIÓN -->
+      <div class="product-info">
+        <h2>Descripción</h2>
+
+        <p>
+          Billetito es una plataforma web diseñada para facilitar el acceso a microcréditos de manera rápida y segura.
+          Permite evaluar solicitudes, gestionar clientes y automatizar procesos financieros para pequeñas
+          organizaciones o startups fintech.
+        </p>
+
+        <h2>Módulos Principales</h2>
+
+        <ul class="features">
+          <li>✔ Creación de cuenta y login tipo billetera digital</li>
+          <li>✔ Simular crédito por tiempo</li>
+          <li>✔ Control de préstamos activos y cuotas</li>
+          <li>✔ Panel administrativo financiero</li>
+          <li>✔ Historial y reportes de pagos</li>
+        </ul>
+
+        <div class="tech-stack">
+          <span>React</span>
+          <span>Node.js</span>
+          <span>MongoDB</span>
+        </div>
+
+        <a href="../billetito/index.html" target="_blank" class="btn-go">IR AHORA</a>
+      </div>
+    </section>
+
+    <footer class="footer py-3">
+      <div class="container">
+        <p class="small mb-0 text-light">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          Creado por
+          <i class="ti-heart text-danger"></i>
+          By
+          <a href="#"><span class="text-danger" title="Bootstrap 4 Themes and Dashboards">Deyvi Zel Qui</span></a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      let slideIndex = 0;
+
+      const slides = document.querySelectorAll('.slide');
+
+      function showSlide(index) {
+        slides.forEach(slide => (slide.style.display = 'none'));
+
+        slides[index].style.display = 'block';
+      }
+
+      document.querySelector('.next').onclick = () => {
+        slideIndex++;
+
+        if (slideIndex >= slides.length) {
+          slideIndex = 0;
+        }
+
+        showSlide(slideIndex);
+      };
+
+      document.querySelector('.prev').onclick = () => {
+        slideIndex--;
+
+        if (slideIndex < 0) {
+          slideIndex = slides.length - 1;
+        }
+
+        showSlide(slideIndex);
+      };
+
+      showSlide(slideIndex);
+    </script>
+  </body>
+</html>

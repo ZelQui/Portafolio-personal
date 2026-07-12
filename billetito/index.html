@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bienvenido a Billetito</title>
+  <link rel="icon" href="img/billetito.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-4">
+
+  <div class="flex flex-col items-center justify-center w-full max-w-md bg-white p-8 rounded-3xl shadow-2xl border border-green-100">
+    <h1 class="text-3xl font-extrabold text-center text-[#00DF00] mb-3">Bienvenido</h1>
+    <img src="img/IsoLogo Billetito.png" alt="Logo Billetito" class="h-20 md:h-24 object-contain mb-8" />
+
+    <button onclick="goToLogin()" class="w-full bg-[#00DF00] text-white py-4 rounded-xl font-bold text-xl hover:bg-[#00DF00] transition duration-200 shadow-lg transform hover:scale-105 mb-6">
+      Ya tengo una cuenta
+    </button>
+
+    <button onclick="goToRegister()" class="w-full bg-white text-[#00DF00] py-4 border-2 border-green-400 rounded-xl font-bold text-xl hover:bg-green-50 transition duration-200 shadow-lg transform hover:scale-105">
+      Crear cuenta
+    </button>
+  </div>
+
+  <script>
+    function goToLogin() {
+      window.location.href = "login-pin.html";
+    }
+
+    function goToRegister() {
+      window.location.href = "register.html"; // Te ayudaré a crear esta luego
+    }
+  </script>
+
+</body>
+</html>

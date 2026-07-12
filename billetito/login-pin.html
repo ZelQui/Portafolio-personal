@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="icon" href="img/billetito.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-green-50 to-green-100 p-4">
+
+    <div
+        class="w-full max-w-md bg-white p-8 rounded-3xl shadow-2xl border border-green-100 transform transition-all duration-300 hover:scale-105">
+
+        <!-- QR PERSONAL -->
+        <div class="flex flex-col items-center justify-center">
+            <div id="qrBilletito" class="mb-2"></div>
+        </div>
+        <!-- ENLACE OLVIDO CLAVE -->
+        <div class="mt-2 text-center mb-3">
+            <a href="recuperar-pin.html" class="text-[#00DF00] font-medium hover:underline text-sm">¿Olvidó o desea
+                cambiar su clave?</a>
+        </div>
+
+        <!-- TEXTO PRINCIPAL -->
+        <h2 class="text-2xl font-extrabold text-center text-[#00DF00] mb-3">Ingresa tu clave</h2>
+
+        <!-- DISPLAY DE PIN -->
+        <div id="pinDisplay" class="flex justify-center mb-6">
+            <div
+                class="w-12 h-12 mx-2 border-b-4 border-gray-300 flex items-center justify-center text-3xl font-bold text-green-800">
+            </div>
+            <div
+                class="w-12 h-12 mx-2 border-b-4 border-gray-300 flex items-center justify-center text-3xl font-bold text-green-800">
+            </div>
+            <div
+                class="w-12 h-12 mx-2 border-b-4 border-gray-300 flex items-center justify-center text-3xl font-bold text-green-800">
+            </div>
+            <div
+                class="w-12 h-12 mx-2 border-b-4 border-gray-300 flex items-center justify-center text-3xl font-bold text-green-800">
+            </div>
+        </div>
+
+        <p id="pinError" class="text-red-500 text-sm mb-4 text-center font-medium hidden"></p>
+
+        <!-- TECLADO NUMÉRICO -->
+        <div class="grid grid-cols-3 gap-3 mb-6">
+            <script>
+        async function sha256Hex(value) {
+            const data = new TextEncoder().encode(value);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+    </script>
+    <script>
+                const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                document.write(nums.map(num => `
+      <button onclick="handlePinInput('${num}')" class="bg-gray-100 text-gray-800 py-2 rounded-lg text-xl font-semibold hover:bg-gray-200 transition duration-200 shadow-sm">
+        ${num}
+      </button>
+    `).join(''));
+            </script>
+
+            <!-- Espacio -->
+            <div></div>
+
+            <!-- Botón 0 -->
+            <button onclick="handlePinInput('0')"
+                class="bg-gray-100 text-gray-800 py-2 rounded-lg text-xl font-semibold hover:bg-gray-200 transition duration-200 shadow-sm">
+                0
+            </button>
+
+            <!-- Botón borrar -->
+            <button onclick="handleDelete()"
+                class="bg-red-100 text-red-600 py-2 rounded-lg hover:bg-red-200 transition duration-200 shadow-sm">
+                <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- BOTÓN INGRESAR -->
+        <!-- <button onclick="handleLogin()"
+            class="w-full bg-[#00DF00] text-white py-3 rounded-xl font-bold text-xl hover:bg-[#00DF00] transition duration-200 shadow-lg transform hover:scale-105">
+            Ingresar
+        </button>-->
+    </div>
+
+    <script>
+        const qrCode = new QRCodeStyling({
+            width: 200,
+            height: 200,
+            data: "Codigo Billetito: 5555Deyvi",
+            image: "img/LogoBilletito2.jpg",
+            dotsOptions: {
+                color: "#00DF00",
+                type: "rounded"
+            },
+            backgroundOptions: {
+                color: "#ffffff"
+            },
+            imageOptions: {
+                crossOrigin: "anonymous",
+                margin: 3,
+                imageSize: 0.3
+            }
+        });
+
+        qrCode.append(document.getElementById("qrBilletito"));
+    </script>
+
+    <script>
+        let pin = "";
+
+        function updatePinDisplay() {
+            const pinBoxes = document.querySelectorAll("#pinDisplay div");
+            pinBoxes.forEach((box, i) => {
+                box.textContent = pin[i] ? "•" : "";
+                box.classList.remove("border-gray-300", "border-[#00DF00]");
+                box.classList.add(pin.length > i ? "border-[#00DF00]" : "border-gray-300");
+            });
+        }
+
+        function handlePinInput(digit) {
+            if (pin.length < 4) {
+                pin += digit;
+                updatePinDisplay();
+                if (pin.length === 4) {
+                    setTimeout(handleLogin, 150); // leve retardo para que se vea el último dígito
+                }
+            }
+        }
+
+        function handleDelete() {
+            pin = pin.slice(0, -1);
+            updatePinDisplay();
+            document.getElementById("pinError").classList.add("hidden");
+        }
+
+        function validatePin(pin) {
+            if (pin.length !== 4) return "Debe ingresar 4 dígitos.";
+            return null;
+        }
+
+        function handleLogin() {
+    const errorBox = document.getElementById("pinError");
+    const pinError = validatePin(pin);
+
+    if (pinError) {
+        errorBox.textContent = pinError;
+        errorBox.classList.remove("hidden");
+        return;
+    }
+
+    Swal.fire({
+        title: 'Validando datos',
+        allowOutsideClick: false,
+        didOpen: () => {
+            // --- Inyectar estilo (solo una vez) para colorear el loader ---
+            if (!document.getElementById('swal2-loader-green')) {
+                const style = document.createElement('style');
+                style.id = 'swal2-loader-green';
+                style.innerHTML = `
+                  /* Solo el spinner (mantén el texto por defecto si lo prefieres) */
+                  .swal2-popup .swal2-loader {
+                    border-color: #00DF00 transparent #00DF00 transparent !important;
+                  }
+                `;
+                document.head.appendChild(style);
+            }
+
+            Swal.showLoading();
+        },
+        timer: 1000,
+        timerProgressBar: true
+    }).then(async () => {
+        if ((await sha256Hex(pin)) === "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4") {
+            window.location.href = "dashboard.html";
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Clave incorrecta',
+                text: 'Vuelve a intentarlo',
+                timer: 2000,
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+            errorBox.classList.add("hidden");
+            pin = "";
+            updatePinDisplay();
+        }
+    });
+}
+
+
+    </script>
+
+</body>
+
+</html>
