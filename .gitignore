@@ -20,6 +20,17 @@ firebase.json
 CLAUDE.local.md
 .credentials.json
 
+# SEO / hosting-generated files
+robots.txt
+sitemap.xml
+
+# Firebase default scaffolding (unused boilerplate)
+/n/
+/public/
+
+# Editor-local config
+.vscode/
+
 # Runtime data
 pids
 *.pid
