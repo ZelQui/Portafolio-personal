@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Walo | Deyvi Zelada</title>
+    <meta name="description" content="Sistema Integral de Gestión Hotelera" />
+    <link rel="icon" href="/assets/imgs/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/proyectos.css" />
+    <link rel="stylesheet" href="/assets/css/detalle.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Poppins:wght@600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body data-slug="hotelwalo">
+    <nav class="detail-nav">
+      <div class="detail-nav-inner">
+        <a href="/index.html#proyectos" class="back-link">
+          <i class="ti-back-left"></i> Mis proyectos
+        </a>
+      </div>
+    </nav>
+
+    <header class="product-header">
+      <div class="product-header-inner">
+        <div class="app-logo-wrapper" id="detalle-logo-wrapper">
+          <img src="" alt="" class="app-logo" id="detalle-logo" />
+        </div>
+        <div class="header-text">
+          <div class="header-top-row">
+            <h1 id="detalle-nombre"></h1>
+            <span class="estado-badge" id="detalle-estado" hidden></span>
+          </div>
+          <p class="subtitle" id="detalle-tagline"></p>
+        </div>
+      </div>
+    </header>
+
+    <section class="product-container">
+      <div class="product-main">
+        <div class="carousel" id="detalle-carousel">
+          <div class="slides" id="detalle-slides"></div>
+          <button class="carousel-btn prev" aria-label="Imagen anterior">&#10094;</button>
+          <button class="carousel-btn next" aria-label="Siguiente imagen">&#10095;</button>
+          <div class="carousel-dots" id="detalle-dots"></div>
+        </div>
+
+        <div class="info-card">
+          <h2>Descripción</h2>
+          <p id="detalle-descripcion"></p>
+        </div>
+
+        <div class="info-card">
+          <h2>Módulos Principales</h2>
+          <ul class="features" id="detalle-modulos"></ul>
+        </div>
+      </div>
+
+      <aside class="product-sidebar">
+        <div class="info-card sidebar-card">
+          <h2>Stack Tecnológico</h2>
+          <div id="detalle-tech"></div>
+        </div>
+
+        <div class="info-card sidebar-card actions-card">
+          <h2>Acciones</h2>
+          <div id="detalle-actions"></div>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <div class="footer-brand">
+          <span class="footer-name">Deyvi Zelada Quiroz</span>
+          <span class="footer-role">Ingeniero de Sistemas e Informática</span>
+        </div>
+
+        <ul class="social-icons footer-social">
+          <li class="social-item">
+            <a class="social-link" href="mailto:deyvizelada03@gmail.com" target="_blank">
+              <i class="ti-google" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="social-item">
+            <a class="social-link" href="https://www.instagram.com/zelada_deyvi/" target="_blank">
+              <i class="ti-instagram" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="social-item">
+            <a class="social-link" href="https://github.com/ZelQui" target="_blank">
+              <i class="ti-github" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="social-item">
+            <a class="social-link" href="https://www.linkedin.com/in/deyvizelada" target="_blank">
+              <i class="ti-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+
+        <p class="footer-copy">
+          &copy; <span id="footer-year"></span> Deyvi Zelada Quiroz. Hecho con <i class="ti-heart" aria-hidden="true"></i> en Perú.
+        </p>
+      </div>
+    </footer>
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
+
+    <script src="/assets/js/detalle.js"></script>
+  </body>
+</html>

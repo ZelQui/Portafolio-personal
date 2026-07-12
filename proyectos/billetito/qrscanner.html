@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escanear QR</title>
+    <link rel="icon" href="img/billetito.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Librería de escaneo QR -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex flex-col pb-24">
+
+    <!-- HEADER -->
+    <header class="w-full bg-[#00DF00] shadow-lg p-3 flex justify-between items-center rounded-b-3xl">
+        <!-- IZQUIERDA: Icono que redirige -->
+        <div class="flex items-center">
+            <a href="dashboard.html" class="text-white hover:text-green-200 transition duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
+                    <path fill-rule="evenodd"
+                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+
+        <!-- DERECHA: Logo estático -->
+        <div class="flex items-center">
+            <img src="img/LogoBilletito blanco.png" alt="Logo Billetito" class="max-w-[105px] h-30 object-contain" />
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div
+            class="flex flex-col items-center justify-center w-full max-w-md bg-white p-8 rounded-3xl shadow-2xl border border-green-100">
+            <h2 class="text-3xl font-extrabold text-center text-[#00DF00] mb-8">Escanear QR</h2>
+
+            <!-- Contenedor del lector -->
+            <div id="reader" class="w-64 h-64 mb-6 rounded-xl shadow-inner"></div>
+
+            <!-- Resultado del escaneo -->
+            <p id="resultado" class="text-gray-600 text-center text-lg">Apunta la cámara al código QR para pagar.</p>
+
+            <button onclick="goBack()"
+                class="w-full bg-gray-200 text-gray-800 py-3 rounded-xl font-bold text-xl hover:bg-gray-300 transition duration-200 shadow-lg mt-4">
+                Cancelar
+            </button>
+        </div>
+    </main>
+
+    <!-- Navegación inferior -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white p-4 pb-6 sm:px-6 sm:py-4 flex justify-center gap-3 sm:gap-4">
+        <button onclick="goToScan()"
+            class="bg-white text-[#00DF00] font-semibold px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg border border-[#00DF00] flex items-center gap-2 sm:gap-3 flex-1 sm:flex-none sm:min-w-[140px] max-w-[160px] justify-center hover:shadow-xl transition-shadow text-sm sm:text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
+            </svg>
+            <span class="whitespace-nowrap">Escanear</span>
+        </button>
+
+        <button onclick="goToSend()"
+            class="bg-[#00DF00] text-white font-semibold px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-2 sm:gap-3 flex-1 sm:flex-none sm:min-w-[140px] max-w-[180px] justify-center hover:bg-green-600 transition-colors text-sm sm:text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+            </svg>
+            <span class="whitespace-nowrap">Enviar dinero</span>
+        </button>
+    </nav>
+
+    <!-- SCRIPTS -->
+    <script>
+        function goBack() {
+            window.location.href = "dashboard.html";
+        }
+
+        function goToScan() {
+            window.location.href = "qrscanner.html";
+        }
+
+        function goToSend() {
+            window.location.href = "sendmoney.html";
+        }
+
+        function goToSettings() {
+            window.location.href = "settings.html";
+        }
+
+        function logout() {
+            try {
+                localStorage.clear();
+                sessionStorage.clear();
+                const cookies = document.cookie.split(";");
+                cookies.forEach(cookie => {
+                    const eqPos = cookie.indexOf("=");
+                    const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
+                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;`;
+                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=${window.location.hostname};`;
+                });
+                console.log('Logout exitoso - datos limpiados');
+            } catch (error) {
+                console.error('Error durante el logout:', error);
+            } finally {
+                window.location.href = "login-pin.html";
+            }
+        }
+
+        // Inicializar el lector QR
+        function iniciarScanner() {
+            const html5QrCode = new Html5Qrcode("reader");
+            const qrConfig = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+            html5QrCode.start(
+                { facingMode: "environment" },
+                qrConfig,
+                qrCodeMessage => {
+                    document.getElementById("resultado").innerText = "QR Detectado: " + qrCodeMessage;
+                    html5QrCode.stop(); // detener cámara después de leer
+                    // Aquí puedes redirigir al flujo de pago, ejemplo:
+                    // window.location.href = "sendmoney.html?qr=" + encodeURIComponent(qrCodeMessage);
+                },
+                errorMessage => {
+                    console.log("Escaneando... ", errorMessage);
+                }
+            ).catch(err => {
+                console.error("Error al iniciar la cámara: ", err);
+                document.getElementById("resultado").innerText = "No se pudo acceder a la cámara.";
+            });
+        }
+
+        window.onload = iniciarScanner;
+    </script>
+</body>
+
+</html>

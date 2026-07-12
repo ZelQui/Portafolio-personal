@@ -1,0 +1,15 @@
+dashboard.html
+notificaciones
+crédito
+	solicitar billetito
+	simulador de billetito
+
+sendmoney.html
+OTROS BANCOS
+
+microcredit.html
+opciones : 100 - 150 - 200 - 250 ... 500
+(botones predeterminados)
+numero de solicitud
+fecha de pago
+minimo 15 dias, 

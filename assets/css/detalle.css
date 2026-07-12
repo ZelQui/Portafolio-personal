@@ -1,0 +1,500 @@
+/* ================================================
+   PLANTILLA DE DETALLE DE PROYECTO
+   Estilos compartidos por proyectos/<slug>.html
+   El color de acento se recibe vía --card-color
+   (seteado por assets/js/detalle.js según el proyecto)
+================================================ */
+
+:root {
+    --card-color: #00e5ff;
+}
+
+body {
+    background: #f5f7fb;
+    color: #1a1a1a;
+}
+
+/* ================================================
+   NAV DE REGRESO
+   Un solo enlace: siempre visible, sin colapsar
+   en hamburguesa (no hay JS de Bootstrap en estas páginas)
+================================================ */
+.detail-nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 1px 24px rgba(15, 23, 42, 0.08);
+}
+
+.detail-nav::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-violet));
+    opacity: 0.6;
+}
+
+.detail-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 24px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0f172a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover,
+.back-link:focus {
+    color: var(--card-color);
+    text-decoration: none;
+}
+
+/* ================================================
+   HEADER
+================================================ */
+.product-header {
+    position: relative;
+    overflow: hidden;
+    padding: 64px 24px 72px;
+    background: linear-gradient(135deg, var(--card-color) 0%, #0f172a 130%);
+    isolation: isolate;
+}
+
+.product-header::before,
+.product-header::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: -1;
+    opacity: 0.45;
+}
+
+.product-header::before {
+    width: 320px;
+    height: 320px;
+    background: var(--card-color);
+    top: -140px;
+    left: -80px;
+}
+
+.product-header::after {
+    width: 260px;
+    height: 260px;
+    background: #7c3aed;
+    bottom: -120px;
+    right: -60px;
+    opacity: 0.35;
+}
+
+.product-header-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.logo-area {
+    display: contents;
+}
+
+.app-logo-wrapper {
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.45);
+    animation: detalleFadeUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.app-logo {
+    max-width: 62%;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.header-text {
+    flex: 1;
+    min-width: 240px;
+}
+
+.header-top-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.product-header h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #ffffff;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+    animation: detalleFadeUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.08s both;
+}
+
+.estado-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(4px);
+    animation: detalleFadeUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.14s both;
+}
+
+.estado-badge[hidden] {
+    display: none;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.82);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    max-width: 640px;
+    margin-top: 10px;
+    animation: detalleFadeUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.18s both;
+}
+
+@keyframes detalleFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .app-logo-wrapper,
+    .product-header h1,
+    .estado-badge,
+    .subtitle {
+        animation: none;
+    }
+}
+
+/* ================================================
+   CONTENEDOR PRINCIPAL (main + sidebar)
+================================================ */
+.product-container {
+    max-width: 1200px;
+    margin: -36px auto 0;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+    padding: 0 24px 60px;
+}
+
+.product-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+}
+
+.product-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-content: start;
+}
+
+@media (min-width: 901px) {
+    .product-sidebar {
+        position: sticky;
+        top: 90px;
+        align-self: start;
+    }
+}
+
+/* Tarjetas de contenido, estilo consistente con .project-card del home */
+.info-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    padding: 28px 30px;
+}
+
+.info-card h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+}
+
+.info-card p {
+    color: #475569;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ================================================
+   CARRUSEL
+================================================ */
+.carousel {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #0f172a;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+.slides {
+    position: relative;
+    aspect-ratio: 16 / 9;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--card-color);
+    padding: 12%;
+    box-sizing: border-box;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+}
+
+.slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.55);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 2;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.75);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.carousel-btn.prev { left: 14px; }
+.carousel-btn.next { right: 14px; }
+
+.carousel-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 2;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.carousel-dot.is-active {
+    background: #ffffff;
+    width: 22px;
+    border-radius: 999px;
+}
+
+/* ================================================
+   MÓDULOS / FEATURES
+================================================ */
+.features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.features li {
+    position: relative;
+    padding-left: 30px;
+    color: #334155;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    background: var(--card-color);
+    opacity: 0.15;
+}
+
+.features li::after {
+    content: '✓';
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--card-color);
+}
+
+/* ================================================
+   STACK TECNOLÓGICO (reutiliza .tech-tag de proyectos.css)
+================================================ */
+#detalle-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* ================================================
+   ACCIONES
+================================================ */
+.actions-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#detalle-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-go,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+.btn-go {
+    background: var(--card-color);
+    color: #ffffff;
+    box-shadow: 0 10px 24px -8px var(--card-color);
+}
+
+.btn-go:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -8px var(--card-color);
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1.5px solid #e2e8f0;
+    color: #334155;
+}
+
+.btn-secondary:hover {
+    border-color: var(--card-color);
+    color: var(--card-color);
+}
+
+.btn-disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ================================================
+   RESPONSIVE
+================================================ */
+@media (max-width: 900px) {
+    .product-header {
+        padding: 48px 20px 64px;
+    }
+
+    .product-container {
+        grid-template-columns: 1fr;
+        margin-top: -28px;
+    }
+
+    .info-card {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-header-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-top-row {
+        justify-content: center;
+    }
+
+    .subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

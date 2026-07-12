@@ -1,15 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Start your development with JohnDoe landing page." />
-    <meta name="author" content="Devcrud" />
+    <!-- Debe ejecutarse lo antes posible para poder bloquear el salto nativo del navegador a #anclas -->
+    <script src="assets/js/anchor-scroll.js"></script>
+    <meta
+      name="description"
+      content="Portafolio profesional de Deyvi Zelada Quiroz, Ingeniero de Sistemas e Informática. Proyectos de desarrollo de software y soluciones cloud: BeltCore, Billetito, Hotel Walo y VotaPE."
+    />
+    <meta name="author" content="Deyvi Zelada Quiroz" />
     <title>Mi Página Personal | Deyvi Zelada</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Deyvi Zelada | Ingeniero de Sistemas e Informática" />
+    <meta
+      property="og:description"
+      content="Portafolio profesional de Deyvi Zelada Quiroz. Descubre mis proyectos de desarrollo de software y soluciones cloud."
+    />
+    <meta property="og:image" content="https://perfil-deyvi.web.app/assets/imgs/avatar2.png" />
+    <meta property="og:url" content="https://perfil-deyvi.web.app/" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Deyvi Zelada | Ingeniero de Sistemas e Informática" />
+    <meta
+      name="twitter:description"
+      content="Portafolio profesional de Deyvi Zelada Quiroz. Descubre mis proyectos de desarrollo de software y soluciones cloud."
+    />
+    <meta name="twitter:image" content="https://perfil-deyvi.web.app/assets/imgs/avatar2.png" />
+
+    <link rel="icon" href="assets/imgs/favicon.svg" type="image/svg+xml" />
+
     <!-- font icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css" />
     <!-- Bootstrap + JohnDoe main styles -->
-    <link rel="stylesheet" href="assets/css/johndoe.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/proyectos.css" />
     <!-- Fuentes -->
     <link
@@ -58,7 +85,7 @@
         </div>
       </div>
     </header>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light navbar-glass" data-spy="affix" data-offset-top="510">
       <div class="container">
         <button
           class="navbar-toggler ml-auto"
@@ -95,17 +122,17 @@
     </nav>
     <div class="container-fluid">
       <div id="about" class="row about-section">
-        <div class="col-lg-4 about-card">
+        <div class="col-lg-4 about-card reveal">
           <h3 class="font-weight-light">Acerca de Mí</h3>
           <span class="line mb-4"></span>
           <p class="mt-20">
-            Soy un joven Egresado de la carrera de Ingeniería de Sistemas e Informática apasionado por la tecnología y su capacidad para transformar el
-            mundo. Actualmente, estoy especializándome en soluciones basadas en la nube, desarrollo de software y redes
-            de comunicaciones. Me encanta aprender y aplicar nuevas tecnologías para resolver problemas complejos y
-            mejorar procesos.
+            Soy un joven Bachiller en Ingeniería de Sistemas e Informática apasionado por la tecnología y su capacidad
+            para transformar el mundo. Actualmente, estoy especializándome en soluciones basadas en la nube, desarrollo
+            de software e integraciones con inteligencia artificial. Me encanta aprender y aplicar nuevas tecnologías
+            para resolver problemas complejos y mejorar procesos.
           </p>
         </div>
-        <div class="col-lg-4 about-card">
+        <div class="col-lg-4 about-card reveal">
           <h3 class="font-weight-light">Información Personal</h3>
           <span class="line mb-4"></span>
           <ul class="mt40 info list-unstyled">
@@ -145,7 +172,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-lg-4 about-card">
+        <div class="col-lg-4 about-card reveal">
           <h3 class="font-weight-light">Cerficaciones Cloud</h3>
           <span class="line mb-5"></span>
           <div class="row">
@@ -173,7 +200,7 @@
       <!-- Sección Proyectos -->
       <div id="proyectos" class="container-fluid">
         <div class="row about-section">
-          <div class="col-lg-12 about-card">
+          <div class="col-lg-12 about-card reveal">
             <h3 class="font-weight-light">Mis Proyectos</h3>
             <span class="line mb-4"></span>
             <p class="mt-20">
@@ -181,118 +208,57 @@
               innovadoras.
             </p>
 
-            <!-- Grid de proyectos -->
-            <div class="projects-grid mt-4">
-              <!-- Proyecto BeltCore -->
-              <div
-                class="project-card"
-                id="card-BeltCore"
-                onclick="window.open('http://159.112.132.125:8080/BeltCoreCG_war_exploded/', '_blank')"
-              >
-                <div class="content">
-                  <div class="project-logo" data-bg="#007ACC">
-                    <img src="assets/imgs/LogoBeltCore.png" alt="BeltCore Logo" />
-                  </div>
-                  <h3 class="project-name">BeltCore</h3>
-                  <p class="project-description">Sistema Integral de Gestión de Producción de Correas</p>
-                  <div class="project-tech">
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Java</span>
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">Oracle Cloud</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Proyecto Billetito -->
-              <div class="project-card" id="card-Billetito" onclick="window.open('detalle-producto/billetito.html', '_self')">
-                <div class="content">
-                  <div class="project-logo" data-bg="#00df00">
-                    <img src="assets/imgs/LogoBilletito.png" alt="Billetito Logo" />
-                  </div>
-                  <h3 class="project-name">Billetito</h3>
-                  <p class="project-description">Web prototipo para Aplicación de Microcréditos</p>
-                  <div class="project-tech">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">MongoDB</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Proyecto Hotel Walo -->
-              <div
-                class="project-card"
-                id="card-BeltCore"
-                onclick="window.open('http://136.248.74.29:8080/HotelTransylvania-1.0-SNAPSHOT/', '_blank')"
-              >
-                <div class="content">
-                  <div class="project-logo" data-bg="#009E85">
-                    <img src="assets/imgs/LogoHotelWalo.png" alt="HotelWalo Logo" />
-                  </div>
-                  <h3 class="project-name">Hotel Walo</h3>
-                  <p class="project-description">Sistema Integral de Gestión Hotelera</p>
-                  <div class="project-tech">
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Java</span>
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">Oracle Cloud</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Proyecto VotaPE -->
-              <div
-                class="project-card"
-                id="card-BeltCore"
-                onclick="window.open('http://codehive-labs.pages.dev/votape/', '_blank')"
-              >
-                <div class="content">
-                  <div class="project-logo" data-bg="#EC0A20">
-                    <img src="assets/imgs/LogoVotaPE invertido.png" alt="HotelWalo Logo" />
-                  </div>
-                  <h3 class="project-name">VotaPE</h3>
-                  <p class="project-description">Aplicación Móvil de información electoral.</p>
-                  <div class="project-tech">
-                    <span class="tech-tag">React Native</span>
-                    <span class="tech-tag">Spring Boot</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                    <span class="tech-tag">Supabase</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Próximamente -->
-              <div class="project-card upcoming-card" id="card-upcoming">
-                <div class="content">
-                  <div class="upcoming-icon-wrapper">
-                    <div class="plus-icon">+</div>
-                  </div>
-                  <h3 class="project-name">Próximamente</h3>
-                  <p class="project-description">Nuevas soluciones innovadoras están en camino.</p>
-                  <div class="status-badge">En desarrollo</div>
-                </div>
-              </div>
+            <!-- Grid de proyectos: renderizado dinámicamente desde assets/data/proyectos.json por assets/js/proyectos.js -->
+            <div class="projects-grid mt-4" id="projects-grid">
+              <p class="text-center w-100">Cargando proyectos…</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <footer class="footer py-3">
-      <div class="container">
-        <p class="small mb-0 text-light">
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <div class="footer-brand">
+          <span class="footer-name">Deyvi Zelada Quiroz</span>
+          <span class="footer-role">Ingeniero de Sistemas e Informática</span>
+        </div>
+
+        <ul class="social-icons footer-social">
+          <li class="social-item">
+            <a class="social-link" href="mailto:deyvizelada03@gmail.com" target="_blank">
+              <i class="ti-google" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="social-item">
+            <a class="social-link" href="https://www.instagram.com/zelada_deyvi/" target="_blank">
+              <i class="ti-instagram" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="social-item">
+            <a class="social-link" href="https://github.com/ZelQui" target="_blank">
+              <i class="ti-github" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="social-item">
+            <a class="social-link" href="https://www.linkedin.com/in/deyvizelada" target="_blank">
+              <i class="ti-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+
+        <p class="footer-copy">
           &copy;
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          Creado por
-          <i class="ti-heart text-danger"></i>
-          By
-          <a href="#"><span class="text-danger" title="Bootstrap 4 Themes and Dashboards">Deyvi Zel Qui</span></a>
+          <span id="footer-year"></span>
+          Deyvi Zelada Quiroz. Hecho con
+          <i class="ti-heart" aria-hidden="true"></i>
+          en Perú.
         </p>
       </div>
     </footer>
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
 
     <!-- core  -->
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
@@ -301,29 +267,12 @@
     <!-- bootstrap 3 affix -->
     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
 
-    <!-- Isotope  -->
-    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
-
     <!-- JohnDoe js -->
     <script src="assets/js/johndoe.js"></script>
 
-    <script>
-      document.querySelectorAll('.project-logo').forEach(logo => {
-        const bg = logo.getAttribute('data-bg');
-        if (!bg) return;
-
-        // Fondo del logo
-        logo.style.background = bg;
-
-        // Sombra tintada en la card
-        const card = logo.closest('.project-card');
-        if (card) {
-          card.style.setProperty(
-            '--card-glow',
-            `${bg}55` // 55 = alpha elegante
-          );
-        }
-      });
-    </script>
+    <!-- Animación de aparición al hacer scroll (.reveal) -->
+    <script src="assets/js/reveal.js"></script>
+    <!-- Grid de proyectos dinámico (lee assets/data/proyectos.json) -->
+    <script src="assets/js/proyectos.js"></script>
   </body>
 </html>

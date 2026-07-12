@@ -1,0 +1,91 @@
+[
+  {
+    "slug": "beltcore",
+    "nombre": "BeltCore",
+    "tagline": "Sistema Integral de Gestión de Producción de Correas",
+    "color": "#007ACC",
+    "logo": "/assets/imgs/LogoBeltCore.png",
+    "descripcion": "BeltCore es un sistema integral pensado para digitalizar el control de producción de correas industriales. Centraliza el registro de órdenes de fabricación, el seguimiento de cada etapa del proceso productivo y la disponibilidad de materia prima, reduciendo el trabajo manual en planta y facilitando la toma de decisiones con información en tiempo real.",
+    "modulos": [
+      "Registro y seguimiento de órdenes de producción",
+      "Control de inventario de materia prima",
+      "Gestión de procesos por etapas de fabricación",
+      "Reportes de productividad y consumo de insumos",
+      "Panel administrativo con indicadores clave"
+    ],
+    "tecnologias": ["JavaScript", "Java", "MySQL", "Oracle Cloud"],
+    "imagenes": ["/assets/imgs/LogoBeltCore.png"],
+    "demoUrl": "http://159.112.132.125:8080/BeltCoreCG_war_exploded/",
+    "githubUrl": null,
+    "estado": "produccion",
+    "proximamente": false
+  },
+  {
+    "slug": "billetito",
+    "nombre": "Billetito",
+    "tagline": "Plataforma digital para gestión de microcréditos rápidos, simples y seguros",
+    "color": "#00df00",
+    "logo": "/assets/imgs/LogoBilletito.png",
+    "descripcion": "Billetito es una plataforma web diseñada para facilitar el acceso a microcréditos de manera rápida y segura. Permite evaluar solicitudes, gestionar clientes y automatizar procesos financieros para pequeñas organizaciones o startups fintech.",
+    "modulos": [
+      "Creación de cuenta y login tipo billetera digital",
+      "Simulador de crédito por tiempo",
+      "Control de préstamos activos y cuotas",
+      "Panel administrativo financiero",
+      "Historial y reportes de pagos"
+    ],
+    "tecnologias": ["React", "Node.js", "MongoDB"],
+    "imagenes": ["/assets/imgs/LogoBilletito.png"],
+    "demoUrl": "/proyectos/billetito/index.html",
+    "githubUrl": null,
+    "estado": "prototipo",
+    "proximamente": false
+  },
+  {
+    "slug": "hotelwalo",
+    "nombre": "Hotel Walo",
+    "tagline": "Sistema Integral de Gestión Hotelera",
+    "color": "#009E85",
+    "logo": "/assets/imgs/LogoHotelWalo.png",
+    "descripcion": "Hotel Walo es un sistema integral orientado a digitalizar la operación diaria de un hotel: reservas, disponibilidad de habitaciones, check-in/check-out y facturación, permitiendo al personal administrativo gestionar la propiedad desde un solo panel.",
+    "modulos": [
+      "Gestión de reservas y disponibilidad de habitaciones",
+      "Check-in y check-out de huéspedes",
+      "Facturación y control de pagos",
+      "Administración de tarifas y tipos de habitación",
+      "Reportes de ocupación"
+    ],
+    "tecnologias": ["JavaScript", "Java", "MySQL", "Oracle Cloud"],
+    "imagenes": ["/assets/imgs/LogoHotelWalo.png"],
+    "demoUrl": "http://136.248.74.29:8080/HotelTransylvania-1.0-SNAPSHOT/",
+    "githubUrl": null,
+    "estado": "produccion",
+    "proximamente": false
+  },
+  {
+    "slug": "votape",
+    "nombre": "VotaPE",
+    "tagline": "Aplicación móvil de información electoral",
+    "color": "#EC0A20",
+    "logo": "/assets/imgs/LogoVotaPE invertido.png",
+    "descripcion": "VotaPE es una aplicación móvil que acerca a los ciudadanos información electoral clara y accesible: ubicación de locales de votación, propuestas de los candidatos y notificaciones relevantes durante el proceso electoral.",
+    "modulos": [
+      "Consulta de candidatos y propuestas",
+      "Ubicación de local de votación",
+      "Notificaciones sobre el proceso electoral",
+      "Perfil del elector"
+    ],
+    "tecnologias": ["React Native", "Spring Boot", "PostgreSQL", "Supabase"],
+    "imagenes": ["/assets/imgs/LogoVotaPE invertido.png"],
+    "demoUrl": "http://codehive-labs.pages.dev/votape/",
+    "githubUrl": null,
+    "estado": "produccion",
+    "proximamente": false
+  },
+  {
+    "slug": "proximamente",
+    "nombre": "Próximamente",
+    "descripcion": "Nuevas soluciones innovadoras están en camino.",
+    "proximamente": true
+  }
+]
